@@ -6,550 +6,691 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>340</width>
-    <height>547</height>
+    <width>369</width>
+    <height>759</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>QVna</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout_9">
-    <item row="0" column="0">
-     <widget class="QSplitter" name="splitter">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
       </property>
-      <widget class="QTabWidget" name="tabWidget">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="tab">
-        <attribute name="title">
-         <string>Parameter</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_6">
-         <item row="0" column="0" colspan="2">
-          <widget class="QGroupBox" name="groupBoxDisplay">
-           <property name="title">
-            <string>Display</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Parameter</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0" colspan="2">
+         <widget class="QGroupBox" name="groupBoxDisplay">
+          <property name="title">
+           <string>Display</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Mode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="comboBoxMode">
+             <item>
               <property name="text">
-               <string>Mode</string>
+               <string>Transmission</string>
               </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="comboBoxMode">
-              <item>
-               <property name="text">
-                <string>Transmission</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Reflection</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Calibrate through</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Calibrate open </string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Calibrate match</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Calibrate short</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="labelPoints">
+             </item>
+             <item>
               <property name="text">
-               <string>Points</string>
+               <string>Reflection</string>
               </property>
-             </widget>
-            </item>
-            <item row="2" column="1" colspan="2">
-             <widget class="QComboBox" name="comboBoxPoints">
-              <item>
-               <property name="text">
-                <string>500</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>1000</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>2000</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>5000</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>10000</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>20000</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QPushButton" name="pushButtonStart">
+             </item>
+             <item>
               <property name="text">
-               <string>Start</string>
+               <string>Calibrate through</string>
               </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1" colspan="2">
-             <widget class="QSpinBox" name="spinBoxAverage">
-              <property name="minimum">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <number>1000</number>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_4">
+             </item>
+             <item>
               <property name="text">
-               <string>Average</string>
+               <string>Calibrate open </string>
               </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="2">
-          <widget class="QGroupBox" name="groupBoxFreq">
-           <property name="title">
-            <string>Range</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="0" column="0">
-             <widget class="QComboBox" name="comboBoxRange">
-              <property name="editable">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QPushButton" name="pushButtonRangeStore">
+             </item>
+             <item>
               <property name="text">
-               <string>Store</string>
+               <string>Calibrate match</string>
               </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QDoubleSpinBox" name="doubleSpinBoxFMin">
-              <property name="decimals">
-               <number>6</number>
-              </property>
-              <property name="maximum">
-               <double>61.439999999999998</double>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="label1_2">
+             </item>
+             <item>
               <property name="text">
-               <string>MHz</string>
+               <string>Calibrate short</string>
               </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QDoubleSpinBox" name="doubleSpinBoxFMax">
-              <property name="decimals">
-               <number>6</number>
-              </property>
-              <property name="maximum">
-               <double>61.439999999999998</double>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="label1">
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="labelPoints">
+             <property name="text">
+              <string>Points</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QComboBox" name="comboBoxPoints">
+             <item>
               <property name="text">
-               <string>MHz</string>
+               <string>500</string>
               </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="2" column="0" colspan="2">
-          <widget class="QGroupBox" name="groupBoxAtt">
-           <property name="title">
-            <string>Att</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_5">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelRFAtt">
+             </item>
+             <item>
               <property name="text">
-               <string>RF Attentuator (dB)</string>
+               <string>1000</string>
               </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="comboBoxRFAtt">
-              <item>
-               <property name="text">
-                <string>0</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>-10</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>-20</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>-30</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>-40</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelTXAtt">
+             </item>
+             <item>
               <property name="text">
-               <string>TX Attentuator (dB)</string>
+               <string>2000</string>
               </property>
-             </widget>
+             </item>
+             <item>
+              <property name="text">
+               <string>5000</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>10000</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>20000</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="pushButtonStart">
+             <property name="text">
+              <string>Start</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" colspan="2">
+            <widget class="QSpinBox" name="spinBoxAverage">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>1000</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Average</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QGroupBox" name="groupBoxFreq">
+          <property name="title">
+           <string>Range</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QComboBox" name="comboBoxRange">
+             <property name="editable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="pushButtonRangeStore">
+             <property name="text">
+              <string>Store</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxFMin">
+             <property name="decimals">
+              <number>6</number>
+             </property>
+             <property name="maximum">
+              <double>61.439999999999998</double>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="label1_2">
+             <property name="text">
+              <string>MHz</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxFMax">
+             <property name="decimals">
+              <number>6</number>
+             </property>
+             <property name="maximum">
+              <double>61.439999999999998</double>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="label1">
+             <property name="text">
+              <string>MHz</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QGroupBox" name="groupBoxAtt">
+          <property name="title">
+           <string>Att</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelRFAtt">
+             <property name="text">
+              <string>RF Attentuator (dB)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="comboBoxRFAtt">
+             <item>
+              <property name="text">
+               <string>0</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>-10</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>-20</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>-30</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>-40</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelTXAtt">
+             <property name="text">
+              <string>TX Attentuator (dB)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboBoxTXAtt">
+             <item>
+              <property name="text">
+               <string>0</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>10</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>20</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonNewPlot">
+          <property name="text">
+           <string>new Plot</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>227</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Calc</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_12">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBoxLCMatch">
+          <property name="title">
+           <string>LC Match</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>RG</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxLCMatchRG">
+             <property name="decimals">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <double>1000000.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>50.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Ant</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxLCMatchAntReal">
+             <property name="decimals">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <double>1000000.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>50.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxLCMatchAntImag">
+             <property name="decimals">
+              <number>1</number>
+             </property>
+             <property name="minimum">
+              <double>-999999.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>1000000.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>j</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Freq</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxLCMatchFreq">
+             <property name="decimals">
+              <number>3</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>MHz</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="5">
+            <widget class="QLabel" name="labelLCMatchHP">
+             <property name="text">
+              <string>HP:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="5">
+            <widget class="QLabel" name="labelLCMatchTP">
+             <property name="text">
+              <string>TP:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>274</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Settings</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>329</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string>Colors</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>17</x>
+           <y>25</y>
+           <width>204</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QComboBox" name="comboBoxColor">
+            <item>
+             <property name="text">
+              <string>Background</string>
+             </property>
             </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="comboBoxTXAtt">
-              <item>
-               <property name="text">
-                <string>0</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>10</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>20</string>
-               </property>
-              </item>
-             </widget>
+            <item>
+             <property name="text">
+              <string>Line real</string>
+             </property>
             </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QPushButton" name="pushButtonNewPlot">
-           <property name="text">
-            <string>new Plot</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>227</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+            <item>
+             <property name="text">
+              <string>Line imag</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Label real</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Label imag</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Label freq</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Marker</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Grid</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Smith real</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Smith imag</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Text</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonColor">
+            <property name="text">
+             <string>Color</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
-       <widget class="QWidget" name="tab_2">
-        <attribute name="title">
-         <string>Calc</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_12">
-         <item row="0" column="0">
-          <widget class="QGroupBox" name="groupBoxLCMatch">
-           <property name="title">
-            <string>LC Match</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_11">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>RG</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1" colspan="2">
-             <widget class="QDoubleSpinBox" name="doubleSpinBoxLCMatchRG">
-              <property name="decimals">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <double>1000000.000000000000000</double>
-              </property>
-              <property name="value">
-               <double>50.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>Ant</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QDoubleSpinBox" name="doubleSpinBoxLCMatchAntReal">
-              <property name="decimals">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <double>1000000.000000000000000</double>
-              </property>
-              <property name="value">
-               <double>50.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QDoubleSpinBox" name="doubleSpinBoxLCMatchAntImag">
-              <property name="decimals">
-               <number>1</number>
-              </property>
-              <property name="minimum">
-               <double>-999999.000000000000000</double>
-              </property>
-              <property name="maximum">
-               <double>1000000.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <widget class="QLabel" name="label_6">
-              <property name="text">
-               <string>j</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_10">
-              <property name="text">
-               <string>Freq</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1" colspan="2">
-             <widget class="QDoubleSpinBox" name="doubleSpinBoxLCMatchFreq">
-              <property name="decimals">
-               <number>3</number>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="3">
-             <widget class="QLabel" name="label_11">
-              <property name="text">
-               <string>MHz</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0" colspan="5">
-             <widget class="QLabel" name="labelLCMatchHP">
-              <property name="text">
-               <string>HP:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0" colspan="5">
-             <widget class="QLabel" name="labelLCMatchTP">
-              <property name="text">
-               <string>TP:</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>274</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+       <widget class="QGroupBox" name="groupBox_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>329</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string>VNA Type</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>17</x>
+           <y>48</y>
+           <width>196</width>
+           <height>24</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QRadioButton" name="hiqsdrRadioButton">
+            <property name="text">
+             <string>HIQSDR</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="serialVNARadioButton">
+            <property name="text">
+             <string>Serial VNA</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
-       <widget class="QWidget" name="tab_3">
-        <attribute name="title">
-         <string>Settings</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_8">
-         <item row="0" column="0">
-          <widget class="QGroupBox" name="groupBox">
-           <property name="title">
-            <string>Device</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_2">
-              <property name="text">
-               <string>HIQSDR-IP</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEditIP">
-              <property name="toolTip">
-               <string>restart to make changes valid</string>
-              </property>
-              <property name="statusTip">
-               <string/>
-              </property>
-              <property name="whatsThis">
-               <string/>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QGroupBox" name="groupBox_3">
-           <property name="title">
-            <string>Colors</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_7">
-            <item row="0" column="0">
-             <widget class="QComboBox" name="comboBoxColor">
-              <item>
-               <property name="text">
-                <string>Background</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Line real</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Line imag</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Label real</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Label imag</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Label freq</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Marker</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Grid</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Smith real</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Smith imag</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Text</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QPushButton" name="pushButtonColor">
-              <property name="text">
-               <string>Color</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>410</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+       <widget class="QGroupBox" name="groupBoxHIQSDR">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>160</y>
+          <width>329</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>HIQSDR</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>17</x>
+           <y>25</y>
+           <width>226</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>HIQSDR-IP</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditIP">
+            <property name="toolTip">
+             <string>restart to make changes valid</string>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBoxSerial">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>220</y>
+          <width>331</width>
+          <height>411</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Serial Port</string>
+        </property>
+        <widget class="QPushButton" name="serialPortSettingsButton">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>0</y>
+           <width>149</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Serial Port Settings</string>
+         </property>
+        </widget>
+        <widget class="Console" name="console">
+         <property name="geometry">
+          <rect>
+           <x>2</x>
+           <y>29</y>
+           <width>381</width>
+           <height>381</height>
+          </rect>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="acceptRichText">
+          <bool>false</bool>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>
@@ -561,8 +702,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>340</width>
-     <height>21</height>
+     <width>369</width>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
@@ -574,21 +715,32 @@
     <addaction name="actionSave"/>
     <addaction name="actionSave_calibration"/>
     <addaction name="separator"/>
-    <addaction name="actionExit"/>
+    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionAbout_Qt"/>
+   </widget>
+   <widget class="QMenu" name="menuSerial">
+    <property name="title">
+     <string>Serial</string>
+    </property>
+    <addaction name="actionConnect"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="actionClear"/>
+    <addaction name="actionConfigure"/>
    </widget>
    <addaction name="menuDatei"/>
+   <addaction name="menuSerial"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionExit">
+  <action name="actionQuit">
    <property name="text">
-    <string>Exit</string>
+    <string>Quit</string>
    </property>
   </action>
   <action name="actionScreenshot">
@@ -616,8 +768,63 @@
     <string>Save measurement</string>
    </property>
   </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+   <property name="toolTip">
+    <string> Connect</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string>Disconnect</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="actionConfigure">
+   <property name="text">
+    <string>Configure</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>Console</class>
+   <extends>QTextEdit</extends>
+   <header location="global">console.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionConfigure</sender>
+   <signal>triggered()</signal>
+   <receiver>serialPortSettingsButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>180</x>
+     <y>329</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>
