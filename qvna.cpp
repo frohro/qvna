@@ -257,68 +257,6 @@ void qvna::changeEvent(QEvent *e)
     }
 }
 
-//void qvna::serialWriteVNACommand(void)
-//{
-//    int i;
-//    uint16_t n;
-//    char data[12];
-//    QByteArray byteArray;
-
-//    qDebug("In serialWriteVNACommand.\n");
-//    if((mode == MODE_REFLECTION)||(mode== MODE_CAL_MATCH)||
-//            (mode==MODE_CAL_OPEN)||(mode==MODE_CAL_SHORT))
-//    {
-//        qDebug("Wrote 0 for reflection mode.\n");
-//        data[0] = '0';
-//        byteArray.resize(3);
-//        byteArray[0]=0x30;byteArray[1]=0x30;byteArray[2]=0x0d;
-//        writeData(byteArray);
-//    }
-//    else if((mode == MODE_TRANSMISSION)||(mode==MODE_CAL_THROUGH))
-//    {
-//        data[0]='1';
-//    }
-//    byteArray.resize(4);
-//    byteArray[0]=0x00;byteArray[1]=0x00;byteArray[2]=0x00;byteArray[3]=0x0d;
-//    data[0]=0x00; data[1]=0x00;data[2]=0x0d;data[3]=0;
-//    writeData(byteArray);
-//    byteArray[0]=0x00;byteArray[1]=0xe8;byteArray[2]=0x03;
-//    writeData(byteArray);
-//    byteArray[0]=0x00;byteArray[1]=0x3d;byteArray[2]=0x00;
-//    writeData(byteArray);
-
-//    data[1] = (0x0d);
-//    n = (uint16_t)(fMin);  // KHz units
-//    qDebug("n is: %d",n);
-//    qDebug("n is: 0x%x",n);
-//    for(int i = 0; i != sizeof(n); ++i)
-//    {
-//        qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//        data[2+i] = (unsigned char)((n & (0xFF << (i*8))) >> (i*8));
-//    } // uint16_t little endian
-//    data[4] = (0x0d);
-//    n = (uint16_t)(points);
-//    qDebug("n is: %d",n);
-//    qDebug("n is: 0x%x",n);
-//    for(int i = 0; i != sizeof(n); ++i)
-//    {
-//        qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//        data[5+i] = (unsigned char)((n & (0xFF << (i*8))) >> (i*8));
-//    }
-//    data[7] = (0x0d);
-//    n = (uint16_t)(fMax);
-//    qDebug("n is: %d",n);
-//    qDebug("n is: 0x%x",n);
-//    for(int i = 0; i != sizeof(n); ++i)
-//    {
-//        qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//        data[8+i]((unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//    }
-//    data[10] = (0x0d);
-//    data[11] = 0;
-//    writeDataArray(data);
-//}
-
 QString toDebug(const QByteArray & line)
 {
     QString s;
@@ -331,6 +269,56 @@ QString toDebug(const QByteArray & line)
     }
     return s;
 }
+
+//void qvna::serialWriteVNACommand(void)
+//{
+//    QByteArray byteArray;
+//    uint16_t n;
+
+//    qDebug("In serialWriteVNACommand.\n");
+//    if((mode == MODE_REFLECTION)||(mode== MODE_CAL_MATCH)||
+//            (mode==MODE_CAL_OPEN)||(mode==MODE_CAL_SHORT))
+//    {
+//        qDebug("Wrote 0 for reflection mode.\n");
+//        byteArray.append('0');
+//    }
+//    else if((mode == MODE_TRANSMISSION)||(mode==MODE_CAL_THROUGH))
+//    {
+//        byteArray.append('1');
+//    }
+//    byteArray.append(0x0d);
+//    n = (uint16_t)(fMin);  // KHz units
+//    qDebug("n is: %d",n);
+//    qDebug("n is: 0x%x",n);
+//    for(int i = 0; i != sizeof(n); ++i)
+//    {
+//        qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
+//        byteArray.append((unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
+//    } // uint16_t little endian
+//    byteArray.append(0x0d);
+//    n = (uint16_t)(points);
+//    qDebug("n is: %d",n);
+//    qDebug("n is: 0x%x",n);
+//    for(int i = 0; i != sizeof(n); ++i)
+//    {
+//        qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
+//        byteArray.append((unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
+//    }
+//    byteArray.append(0x0d);
+//    n = (uint16_t)(fMax);
+//    qDebug("n is: %d",n);
+//    qDebug("n is: 0x%x",n);
+//    for(int i = 0; i != sizeof(n); ++i)
+//    {
+//        qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
+//        byteArray.append((unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
+//    }
+//    byteArray.append(0x0d);
+//    qDebug ("The byteArray is: ");
+//    qDebug() << toDebug(byteArray);
+//    emit console->getData(byteArray);
+//    //writeData(byteArray);
+//}
 
 void qvna::serialWriteVNACommand(void)
 {
@@ -348,8 +336,8 @@ void qvna::serialWriteVNACommand(void)
     {
         byteArray.append('1');
     }
-    byteArray.append(0x0d);
-    n = (uint16_t)(fMin);  // KHz units
+   // byteArray.append(0x0d);
+    n = (uint16_t)(fMin*1000);  // KHz units
     qDebug("n is: %d",n);
     qDebug("n is: 0x%x",n);
     for(int i = 0; i != sizeof(n); ++i)
@@ -357,7 +345,7 @@ void qvna::serialWriteVNACommand(void)
         qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
         byteArray.append((unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
     } // uint16_t little endian
-    byteArray.append(0x0d);
+    //byteArray.append(0x0d);
     n = (uint16_t)(points);
     qDebug("n is: %d",n);
     qDebug("n is: 0x%x",n);
@@ -366,8 +354,8 @@ void qvna::serialWriteVNACommand(void)
         qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
         byteArray.append((unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
     }
-    byteArray.append(0x0d);
-    n = (uint16_t)(fMax);
+    //byteArray.append(0x0d);
+    n = (uint16_t)(fMax*1000);
     qDebug("n is: %d",n);
     qDebug("n is: 0x%x",n);
     for(int i = 0; i != sizeof(n); ++i)
