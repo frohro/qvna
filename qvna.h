@@ -86,6 +86,13 @@ private:
     Console *console;
     SettingsDialog *serialSettingsDialog;
     QSerialPort *serial;
+    QByteArray serialDataRead;
+
+    void processData(double calRe, double calIm, double r, double phi, double freq, int i, double mod, double f, int imod);
+
+    void processData(double r, int i, double phi);
+
+    void processData(int i);
 
 signals:
     void setFreq(double min, double max);
@@ -143,6 +150,7 @@ private slots:
     void on_serialPortSettingsButton_clicked();
     void on_serialVNARadioButton_clicked();
     void on_hiqsdrRadioButton_clicked();
+    void on_showSerialCheckbox_toggled(bool checked);
 };
 
 #endif // QVNA_H

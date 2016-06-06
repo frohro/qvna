@@ -27,7 +27,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -656,8 +656,8 @@
         <widget class="QPushButton" name="serialPortSettingsButton">
          <property name="geometry">
           <rect>
-           <x>90</x>
-           <y>0</y>
+           <x>10</x>
+           <y>50</y>
            <width>149</width>
            <height>27</height>
           </rect>
@@ -675,10 +675,10 @@
         <widget class="Console" name="console">
          <property name="geometry">
           <rect>
-           <x>2</x>
-           <y>29</y>
-           <width>381</width>
-           <height>381</height>
+           <x>0</x>
+           <y>100</y>
+           <width>321</width>
+           <height>331</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -689,6 +689,19 @@
          </property>
          <property name="acceptRichText">
           <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="showSerialCheckbox">
+         <property name="geometry">
+          <rect>
+           <x>180</x>
+           <y>50</y>
+           <width>141</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show Serial Data</string>
          </property>
         </widget>
        </widget>

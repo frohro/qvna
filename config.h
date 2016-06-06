@@ -7,7 +7,7 @@ using namespace std;
 
 typedef complex<double> dcomplex;
 
-#define VERSION        "0.9.3"
+#define VERSION        "0.9.4"
 
 #define HIQIP			"192.168.2.196"
 
@@ -23,7 +23,7 @@ typedef complex<double> dcomplex;
 
 #define MAX_SAMPLE_SIZE	(32*1024)
 #define CAL_POINTS		1000
-
+#define SERIAL_DATA_BYTE_SIZE 4 // 2 bytes for re and 2 for im (in bytes)
 #define RX_CLOCK	122880000LL
 #define CAL_F_MIN	0
 #define CAL_F_MAX	(RX_CLOCK/2)

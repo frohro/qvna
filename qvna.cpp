@@ -55,9 +55,9 @@ qvna::qvna(QWidget *parent) :
     hiqsdrIP = QString(HIQIP);
 
     ui->setupUi(this);
-    //console = new Console;
     console = ui->console;
     serial = new QSerialPort(this);
+    serial->setReadBufferSize(sizeof(SERIAL_DATA_BYTE_SIZE*MAX_SAMPLE_SIZE)); // So we don't run out of memory.
     serialSettingsDialog = new SettingsDialog;
     readSettings();
     setVNAType();
@@ -139,7 +139,10 @@ void qvna::openSerialPort()
     serial->setFlowControl(p.flowControl);
     if (serial->open(QIODevice::ReadWrite)) {
         console->setEnabled(true);
-        console->show();
+        if(ui->showSerialCheckbox->isChecked())
+        {
+            console->show();
+        }
         console->setLocalEchoEnabled(p.localEchoEnabled);
         ui->actionConnect->setEnabled(false);
         ui->actionDisconnect->setEnabled(true);
@@ -164,22 +167,15 @@ void qvna::closeSerialPort()
     showStatusMessage(tr("Disconnected"));
 }
 
-//void qvna::writeDataArray(unsigned char *data)
-//{
-//    qint64 numBytesWritten;
-//    console->setTextColor(Qt::yellow);
-//    console->putData(QByteArray((char*)data,-1));
-//    if((numBytesWritten = serial->writeData((const char*)data,256)) == -1)
-//        qDebug("Error writing to serial port!/n");
-//    qDebug ( "Wrote %lld bytes to serial port.\n",numBytesWritten);
-//}
-
 void qvna::writeData(const QByteArray &data)
 {
     qint64 numBytesWritten;
    // qDebug("Setting colorto yellow.\n");
-    console->setTextColor(Qt::yellow);
-    console->putData(data);
+    if(ui->showSerialCheckbox->isChecked())
+    {
+        console->setTextColor(Qt::yellow);
+        console->putData(data);
+    }
     if((numBytesWritten = serial->write(data)) == -1)
         qDebug("Error writing to serial port!/n");
     qDebug ( "Wrote %lld bytes to serial port.\n",numBytesWritten);
@@ -187,10 +183,30 @@ void qvna::writeData(const QByteArray &data)
 
 void qvna::readData()
 {
-    QByteArray data = serial->readAll();
-    //qDebug("Setting color to green.\n");
-    console->setTextColor(Qt::green);
-    console->putData(data);
+    QByteArray data;
+    int thisFrequencyDataSize;
+    data = serial->readAll();
+    serialDataRead.append(data);
+    thisFrequencyDataSize = serialDataRead.size();
+    int sizeNeeded = points*SERIAL_DATA_BYTE_SIZE;
+    if( thisFrequencyDataSize <  sizeNeeded)
+    {
+        qDebug("thisFrequencyDataSize is: %d\n",thisFrequencyDataSize);
+    }
+    else if(thisFrequencyDataSize == sizeNeeded)
+    {
+        qDebug("We got sizeNeeded points, and are about to readVNA\n");
+        readVNA();
+    }
+    else
+    {
+        qDebug("Got too much data!\n");
+    }
+    if(ui->showSerialCheckbox->isChecked())
+    {
+        console->setTextColor(Qt::green);
+        console->putData(serialDataRead);
+    }
 }
 
 void qvna::handleError(QSerialPort::SerialPortError error)
@@ -270,56 +286,6 @@ QString toDebug(const QByteArray & line)
     return s;
 }
 
-//void qvna::serialWriteVNACommand(void)
-//{
-//    QByteArray byteArray;
-//    uint16_t n;
-
-//    qDebug("In serialWriteVNACommand.\n");
-//    if((mode == MODE_REFLECTION)||(mode== MODE_CAL_MATCH)||
-//            (mode==MODE_CAL_OPEN)||(mode==MODE_CAL_SHORT))
-//    {
-//        qDebug("Wrote 0 for reflection mode.\n");
-//        byteArray.append('0');
-//    }
-//    else if((mode == MODE_TRANSMISSION)||(mode==MODE_CAL_THROUGH))
-//    {
-//        byteArray.append('1');
-//    }
-//    byteArray.append(0x0d);
-//    n = (uint16_t)(fMin);  // KHz units
-//    qDebug("n is: %d",n);
-//    qDebug("n is: 0x%x",n);
-//    for(int i = 0; i != sizeof(n); ++i)
-//    {
-//        qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//        byteArray.append((unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//    } // uint16_t little endian
-//    byteArray.append(0x0d);
-//    n = (uint16_t)(points);
-//    qDebug("n is: %d",n);
-//    qDebug("n is: 0x%x",n);
-//    for(int i = 0; i != sizeof(n); ++i)
-//    {
-//        qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//        byteArray.append((unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//    }
-//    byteArray.append(0x0d);
-//    n = (uint16_t)(fMax);
-//    qDebug("n is: %d",n);
-//    qDebug("n is: 0x%x",n);
-//    for(int i = 0; i != sizeof(n); ++i)
-//    {
-//        qDebug("The byte is: 0x%02x",(unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//        byteArray.append((unsigned char)((n & (0xFF << (i*8))) >> (i*8)));
-//    }
-//    byteArray.append(0x0d);
-//    qDebug ("The byteArray is: ");
-//    qDebug() << toDebug(byteArray);
-//    emit console->getData(byteArray);
-//    //writeData(byteArray);
-//}
-
 void qvna::serialWriteVNACommand(void)
 {
     QByteArray byteArray;
@@ -366,23 +332,64 @@ void qvna::serialWriteVNACommand(void)
     byteArray.append(0x0d);
     qDebug ("The byteArray is: ");
     qDebug() << toDebug(byteArray);
+    serialDataRead = QByteArray("");
     emit console->getData(byteArray);
-    //writeData(byteArray);
+}
+
+void qvna::processData(int i)
+{
+    double f,freq,mod,calRe,calIm,r,phi;
+    int imod;
+    r  = sqrt(re[i] * re[i] + im[i] * im[i]);
+    phi  = atan2(im[i], re[i]);
+    freq = fMin + i*(fMax-fMin)/points;
+    f = freq*1e6*CAL_POINTS/CAL_F_MAX;
+
+    f = modf(f,&mod);
+    imod = (int)mod;
+
+    switch (mode) {
+    case MODE_TRANSMISSION:
+        calRe = cRe[imod] + (cRe[imod+1]-cRe[imod])*f;
+        if ((cIm[imod+1]-cIm[imod])>M_PI)
+            calIm = cIm[imod] + (cIm[imod+1]-cIm[imod]-2*M_PI)*f;
+        else if ((cIm[imod+1] -cIm[imod])<-M_PI)
+            calIm = cIm[imod] + (cIm[imod+1]-cIm[imod]+2*M_PI)*f;
+        else
+            calIm = cIm[imod] + (cIm[imod+1]-cIm[imod])*f;
+
+        r   /= calRe;
+        phi -= calIm;
+        phi += delay*freq/500.0;
+
+        break;
+    case MODE_REFLECTION:
+    case MODE_CAL_THROUGH:
+    case MODE_CAL_OPEN:
+    case MODE_CAL_MATCH:
+    case MODE_CAL_SHORT:
+        break;
+    }
+    phi += delay*freq/500.0;
+    while (phi >  M_PI) phi -= 2*M_PI;
+    while (phi < -M_PI) phi += 2*M_PI;
+    re[i] = r;
+    im[i] = phi;
 }
 
 void qvna::readVNA() {
-    QByteArray datagram;
-    QByteArray syncPattern("\x00\x00\x00\x00\x00\x00",6);
-    QHostAddress sender;
-    quint16 senderPort;
-    static bool inSync=false;;
-    int st;
-    unsigned char *p;
-    static const int NBITS = 32;          // # of bits in a sample
-    double r,phi;
 
-    if(ui->hiqsdrRadioButton->isChecked())
+
+    if(vnaType==VNA_TYPE_HIQSDR)
     {
+        QByteArray datagram;
+        QByteArray syncPattern("\x00\x00\x00\x00\x00\x00",6);
+        QHostAddress sender;
+        quint16 senderPort;
+        static bool inSync=false;;
+        int st;
+        unsigned char *p;
+        static const int NBITS = 32;          // # of bits in a sample
 
         while (vnaSocket->hasPendingDatagrams()>0) {
             datagram.resize(vnaSocket->pendingDatagramSize());
@@ -416,10 +423,7 @@ void qvna::readVNA() {
                 }
             } else {
                 if (rawData.mid(points*6,6) == syncPattern) {
-                    double f,freq;
-                    double mod, calRe, calIm;
-                    int imod, i_re, i_im;
-
+                    int i_re, i_im;
                     PDEBUG(MSG2, "VNA: sync");
                     p = (unsigned char*)rawData.data();
                     for (int i=0; i < points; i++) {
@@ -433,41 +437,7 @@ void qvna::readVNA() {
                             re[i] = re_a[i] / averageSamples;
                             im[i] = im_a[i] / averageSamples;
 
-                            r  = sqrt(re[i] * re[i] + im[i] * im[i]);
-                            phi  = atan2(im[i], re[i]);
-                            freq = fMin + i*(fMax-fMin)/points;
-                            f = freq*1e6*CAL_POINTS/CAL_F_MAX;
-
-                            f = modf(f,&mod);
-                            imod = (int)mod;
-
-                            switch (mode) {
-                            case MODE_TRANSMISSION:
-                                calRe = cRe[imod] + (cRe[imod+1]-cRe[imod])*f;
-                                if ((cIm[imod+1]-cIm[imod])>M_PI)
-                                    calIm = cIm[imod] + (cIm[imod+1]-cIm[imod]-2*M_PI)*f;
-                                else if ((cIm[imod+1] -cIm[imod])<-M_PI)
-                                    calIm = cIm[imod] + (cIm[imod+1]-cIm[imod]+2*M_PI)*f;
-                                else
-                                    calIm = cIm[imod] + (cIm[imod+1]-cIm[imod])*f;
-
-                                r   /= calRe;
-                                phi -= calIm;
-                                phi += delay*freq/500.0;
-
-                                break;
-                            case MODE_REFLECTION:
-                            case MODE_CAL_THROUGH:
-                            case MODE_CAL_OPEN:
-                            case MODE_CAL_MATCH:
-                            case MODE_CAL_SHORT:
-                                break;
-                            }
-                            phi += delay*freq/500.0;
-                            while (phi >  M_PI) phi -= 2*M_PI;
-                            while (phi < -M_PI) phi += 2*M_PI;
-                            re[i] = r;
-                            im[i] = phi;
+                            processData(i);
                         }
                         emit plot();
                         resetSamples();
@@ -487,10 +457,35 @@ void qvna::readVNA() {
             }
         }
     }
-    else if(ui->serialVNARadioButton->isChecked())
-    {
+    else if(vnaType == VNA_TYPE_SERIAL)
+    { // For Serial VNA types....
+        // First read the data, and parse it.
+        // http://www.qtcentre.org/threads/46171-Parsing-extracting-from-a-binary-QByteArray
 
+       // This converts the data from QByteArray to uint16 and then to double.  It depends on the machine being little endian.
+        //const uint16_t* dataPtr;
+       // dataPtr = (const uint16_t*)serialDataRead.constData(); // Some problems here.  Also some problems with the VNA always
+        // sending 0x66.
+        qDebug ("The byteArray is: ");
+        qDebug() << toDebug(serialDataRead);
+       // qDebug("last two points are 0x%x, and 0x%x",dataPtr[2*points],dataPtr[2*points+1]);
+        for (int i=0; i < points; i++) {
+            re[i] = (double)(static_cast<quint8>(serialDataRead.at(4*i)))+(double)(256*static_cast<quint8>(serialDataRead.at(4*i+1)));
+            im[i] = (double)(static_cast<quint8>(serialDataRead.at(4*i+2)))+(double)(256*static_cast<quint8>(serialDataRead.at(4*i+3)));
+            //re[i] = (double)dataPtr[2*i];
+            //im[i] = (double)dataPtr[2*i+1];
+            processData(i);
+        }
+        qDebug("re[points] is: %f", re[points]);
+        qDebug("im[points] is: %f", im[points]);
+        emit plot();
+        resetSamples();
+        if (mode >= MODE_CAL_THROUGH) {
+            ui->pushButtonStart->setText("Store");
+            ui->pushButtonStart->setChecked(false);
+        }
     }
+    else qDebug("VNA type not recognized.\n");
 }
 
 void qvna::on_doubleSpinBoxFMin_valueChanged(double v)
@@ -1126,6 +1121,7 @@ void qvna::showSerialSettings(void)
 void qvna::on_serialPortSettingsButton_clicked()
 {
     showSerialSettings();
+    qDebug("Showing Serial Settings\n");
 }
 
 void qvna::on_serialVNARadioButton_clicked()
@@ -1138,3 +1134,14 @@ void qvna::on_hiqsdrRadioButton_clicked()
     setVNAType();
 }
 
+void qvna::on_showSerialCheckbox_toggled(bool checked)
+{
+    if (checked)
+    {
+        console->show();
+    }
+    else
+    {
+        console->hide();
+    }
+}
