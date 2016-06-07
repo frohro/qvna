@@ -79,6 +79,14 @@ qvna::qvna(QWidget *parent) :
     colors["Smith imag"] = QColor(128,0,0);
     colors["Text"]       = QColor("Gray");
 
+    if(ui->showSerialCheckbox->isChecked())
+    {
+        console->show();
+    }
+    else
+    {
+        console->hide();
+    }
     readSettings();
     hiqsdr = new HiqsdrCtl( hiqsdrIP);
     for (int i=0;i<MAX_RANGE;i++)
@@ -139,10 +147,6 @@ void qvna::openSerialPort()
     serial->setFlowControl(p.flowControl);
     if (serial->open(QIODevice::ReadWrite)) {
         console->setEnabled(true);
-        if(ui->showSerialCheckbox->isChecked())
-        {
-            console->show();
-        }
         console->setLocalEchoEnabled(p.localEchoEnabled);
         ui->actionConnect->setEnabled(false);
         ui->actionDisconnect->setEnabled(true);
