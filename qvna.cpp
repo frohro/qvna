@@ -476,8 +476,8 @@ void qvna::readVNA() {
             //im[i] = (double)dataPtr[2*i+1];
             processData(i);
         }
-        qDebug("re[points] is: %f", re[points]);
-        qDebug("im[points] is: %f", im[points]);
+        qDebug("re[points-1] is: %f", re[points-1]);
+        qDebug("im[points-1] is: %f", im[points-1]);
         emit plot();
         resetSamples();
         if (mode >= MODE_CAL_THROUGH) {
