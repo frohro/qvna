@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'diag.ui'
 **
-** Created by: Qt User Interface Compiler version 5.4.2
+** Created by: Qt User Interface Compiler version 5.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -86,9 +86,9 @@ public:
 
     void retranslateUi(QWidget *Diag)
     {
-        Diag->setWindowTitle(QApplication::translate("Diag", "Plot", 0));
-        label->setText(QApplication::translate("Diag", "Scale", 0));
-        pushButtonScreenShot->setText(QApplication::translate("Diag", "Screenshot", 0));
+        Diag->setWindowTitle(QApplication::translate("Diag", "Plot", Q_NULLPTR));
+        label->setText(QApplication::translate("Diag", "Scale", Q_NULLPTR));
+        pushButtonScreenShot->setText(QApplication::translate("Diag", "Screenshot", Q_NULLPTR));
     } // retranslateUi
 
 };

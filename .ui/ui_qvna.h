@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'qvna.ui'
 **
-** Created by: Qt User Interface Compiler version 5.4.2
+** Created by: Qt User Interface Compiler version 5.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,10 +13,12 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -24,27 +26,33 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <console.h>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_qvna
 {
 public:
-    QAction *actionExit;
+    QAction *actionQuit;
     QAction *actionScreenshot;
     QAction *actionAbout;
     QAction *actionSave_calibration;
     QAction *actionLoad_calibration;
     QAction *actionSave;
+    QAction *actionConnect;
+    QAction *actionDisconnect;
+    QAction *actionClear;
+    QAction *actionConfigure;
+    QAction *actionAbout_Qt;
     QWidget *centralWidget;
-    QGridLayout *gridLayout_9;
-    QSplitter *splitter;
+    QVBoxLayout *verticalLayout_3;
     QTabWidget *tabWidget;
     QWidget *tab;
     QGridLayout *gridLayout_6;
@@ -90,28 +98,44 @@ public:
     QLabel *labelLCMatchTP;
     QSpacerItem *verticalSpacer;
     QWidget *tab_3;
-    QGridLayout *gridLayout_8;
-    QGroupBox *groupBox;
-    QGridLayout *gridLayout_2;
-    QLabel *label_2;
-    QLineEdit *lineEditIP;
     QGroupBox *groupBox_3;
-    QGridLayout *gridLayout_7;
+    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout_3;
     QComboBox *comboBoxColor;
     QPushButton *pushButtonColor;
-    QSpacerItem *verticalSpacer_2;
+    QGroupBox *groupBox_4;
+    QWidget *layoutWidget1;
+    QHBoxLayout *horizontalLayout;
+    QRadioButton *hiqsdrRadioButton;
+    QRadioButton *serialVNARadioButton;
+    QGroupBox *groupBoxHIQSDR;
+    QWidget *layoutWidget2;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_2;
+    QLineEdit *lineEditIP;
+    QGroupBox *groupBoxSerial;
+    QPushButton *serialPortSettingsButton;
+    Console *console;
+    QCheckBox *showSerialCheckbox;
     QMenuBar *menuBar;
     QMenu *menuDatei;
     QMenu *menuHelp;
+    QMenu *menuSerial;
     QStatusBar *statusBar;
+    QButtonGroup *buttonGroup;
 
     void setupUi(QMainWindow *qvna)
     {
         if (qvna->objectName().isEmpty())
             qvna->setObjectName(QStringLiteral("qvna"));
-        qvna->resize(340, 547);
-        actionExit = new QAction(qvna);
-        actionExit->setObjectName(QStringLiteral("actionExit"));
+        qvna->resize(369, 759);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::MinimumExpanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(qvna->sizePolicy().hasHeightForWidth());
+        qvna->setSizePolicy(sizePolicy);
+        actionQuit = new QAction(qvna);
+        actionQuit->setObjectName(QStringLiteral("actionQuit"));
         actionScreenshot = new QAction(qvna);
         actionScreenshot->setObjectName(QStringLiteral("actionScreenshot"));
         actionAbout = new QAction(qvna);
@@ -122,16 +146,23 @@ public:
         actionLoad_calibration->setObjectName(QStringLiteral("actionLoad_calibration"));
         actionSave = new QAction(qvna);
         actionSave->setObjectName(QStringLiteral("actionSave"));
+        actionConnect = new QAction(qvna);
+        actionConnect->setObjectName(QStringLiteral("actionConnect"));
+        actionDisconnect = new QAction(qvna);
+        actionDisconnect->setObjectName(QStringLiteral("actionDisconnect"));
+        actionClear = new QAction(qvna);
+        actionClear->setObjectName(QStringLiteral("actionClear"));
+        actionConfigure = new QAction(qvna);
+        actionConfigure->setObjectName(QStringLiteral("actionConfigure"));
+        actionAbout_Qt = new QAction(qvna);
+        actionAbout_Qt->setObjectName(QStringLiteral("actionAbout_Qt"));
         centralWidget = new QWidget(qvna);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        gridLayout_9 = new QGridLayout(centralWidget);
-        gridLayout_9->setSpacing(6);
-        gridLayout_9->setContentsMargins(11, 11, 11, 11);
-        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
-        splitter = new QSplitter(centralWidget);
-        splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setOrientation(Qt::Horizontal);
-        tabWidget = new QTabWidget(splitter);
+        verticalLayout_3 = new QVBoxLayout(centralWidget);
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setEnabled(true);
         tab = new QWidget();
@@ -291,7 +322,7 @@ public:
         doubleSpinBoxLCMatchRG = new QDoubleSpinBox(groupBoxLCMatch);
         doubleSpinBoxLCMatchRG->setObjectName(QStringLiteral("doubleSpinBoxLCMatchRG"));
         doubleSpinBoxLCMatchRG->setDecimals(1);
-        doubleSpinBoxLCMatchRG->setMaximum(1e+06);
+        doubleSpinBoxLCMatchRG->setMaximum(1e+6);
         doubleSpinBoxLCMatchRG->setValue(50);
 
         gridLayout_11->addWidget(doubleSpinBoxLCMatchRG, 0, 1, 1, 2);
@@ -304,7 +335,7 @@ public:
         doubleSpinBoxLCMatchAntReal = new QDoubleSpinBox(groupBoxLCMatch);
         doubleSpinBoxLCMatchAntReal->setObjectName(QStringLiteral("doubleSpinBoxLCMatchAntReal"));
         doubleSpinBoxLCMatchAntReal->setDecimals(1);
-        doubleSpinBoxLCMatchAntReal->setMaximum(1e+06);
+        doubleSpinBoxLCMatchAntReal->setMaximum(1e+6);
         doubleSpinBoxLCMatchAntReal->setValue(50);
 
         gridLayout_11->addWidget(doubleSpinBoxLCMatchAntReal, 1, 1, 1, 1);
@@ -313,7 +344,7 @@ public:
         doubleSpinBoxLCMatchAntImag->setObjectName(QStringLiteral("doubleSpinBoxLCMatchAntImag"));
         doubleSpinBoxLCMatchAntImag->setDecimals(1);
         doubleSpinBoxLCMatchAntImag->setMinimum(-999999);
-        doubleSpinBoxLCMatchAntImag->setMaximum(1e+06);
+        doubleSpinBoxLCMatchAntImag->setMaximum(1e+6);
 
         gridLayout_11->addWidget(doubleSpinBoxLCMatchAntImag, 1, 2, 1, 1);
 
@@ -358,83 +389,149 @@ public:
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
-        gridLayout_8 = new QGridLayout(tab_3);
-        gridLayout_8->setSpacing(6);
-        gridLayout_8->setContentsMargins(11, 11, 11, 11);
-        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
-        groupBox = new QGroupBox(tab_3);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        gridLayout_2 = new QGridLayout(groupBox);
-        gridLayout_2->setSpacing(6);
-        gridLayout_2->setContentsMargins(11, 11, 11, 11);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        label_2 = new QLabel(groupBox);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        gridLayout_2->addWidget(label_2, 0, 0, 1, 1);
-
-        lineEditIP = new QLineEdit(groupBox);
-        lineEditIP->setObjectName(QStringLiteral("lineEditIP"));
-
-        gridLayout_2->addWidget(lineEditIP, 0, 1, 1, 1);
-
-
-        gridLayout_8->addWidget(groupBox, 0, 0, 1, 1);
-
         groupBox_3 = new QGroupBox(tab_3);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        gridLayout_7 = new QGridLayout(groupBox_3);
-        gridLayout_7->setSpacing(6);
-        gridLayout_7->setContentsMargins(11, 11, 11, 11);
-        gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
-        comboBoxColor = new QComboBox(groupBox_3);
+        groupBox_3->setGeometry(QRect(10, 0, 329, 91));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(groupBox_3->sizePolicy().hasHeightForWidth());
+        groupBox_3->setSizePolicy(sizePolicy1);
+        layoutWidget = new QWidget(groupBox_3);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(17, 25, 204, 29));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget);
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        comboBoxColor = new QComboBox(layoutWidget);
         comboBoxColor->setObjectName(QStringLiteral("comboBoxColor"));
 
-        gridLayout_7->addWidget(comboBoxColor, 0, 0, 1, 1);
+        horizontalLayout_3->addWidget(comboBoxColor);
 
-        pushButtonColor = new QPushButton(groupBox_3);
+        pushButtonColor = new QPushButton(layoutWidget);
         pushButtonColor->setObjectName(QStringLiteral("pushButtonColor"));
 
-        gridLayout_7->addWidget(pushButtonColor, 1, 0, 1, 1);
+        horizontalLayout_3->addWidget(pushButtonColor);
 
+        groupBox_4 = new QGroupBox(tab_3);
+        groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
+        groupBox_4->setGeometry(QRect(10, 80, 329, 81));
+        sizePolicy1.setHeightForWidth(groupBox_4->sizePolicy().hasHeightForWidth());
+        groupBox_4->setSizePolicy(sizePolicy1);
+        layoutWidget1 = new QWidget(groupBox_4);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(17, 48, 196, 24));
+        horizontalLayout = new QHBoxLayout(layoutWidget1);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        hiqsdrRadioButton = new QRadioButton(layoutWidget1);
+        buttonGroup = new QButtonGroup(qvna);
+        buttonGroup->setObjectName(QStringLiteral("buttonGroup"));
+        buttonGroup->addButton(hiqsdrRadioButton);
+        hiqsdrRadioButton->setObjectName(QStringLiteral("hiqsdrRadioButton"));
 
-        gridLayout_8->addWidget(groupBox_3, 1, 0, 1, 1);
+        horizontalLayout->addWidget(hiqsdrRadioButton);
 
-        verticalSpacer_2 = new QSpacerItem(20, 410, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        serialVNARadioButton = new QRadioButton(layoutWidget1);
+        buttonGroup->addButton(serialVNARadioButton);
+        serialVNARadioButton->setObjectName(QStringLiteral("serialVNARadioButton"));
+        serialVNARadioButton->setChecked(true);
 
-        gridLayout_8->addItem(verticalSpacer_2, 2, 0, 1, 1);
+        horizontalLayout->addWidget(serialVNARadioButton);
 
+        groupBoxHIQSDR = new QGroupBox(tab_3);
+        groupBoxHIQSDR->setObjectName(QStringLiteral("groupBoxHIQSDR"));
+        groupBoxHIQSDR->setGeometry(QRect(10, 160, 329, 61));
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(groupBoxHIQSDR->sizePolicy().hasHeightForWidth());
+        groupBoxHIQSDR->setSizePolicy(sizePolicy2);
+        groupBoxHIQSDR->setMinimumSize(QSize(0, 50));
+        layoutWidget2 = new QWidget(groupBoxHIQSDR);
+        layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(17, 25, 226, 29));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget2);
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_2 = new QLabel(layoutWidget2);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        horizontalLayout_2->addWidget(label_2);
+
+        lineEditIP = new QLineEdit(layoutWidget2);
+        lineEditIP->setObjectName(QStringLiteral("lineEditIP"));
+
+        horizontalLayout_2->addWidget(lineEditIP);
+
+        groupBoxSerial = new QGroupBox(tab_3);
+        groupBoxSerial->setObjectName(QStringLiteral("groupBoxSerial"));
+        groupBoxSerial->setGeometry(QRect(10, 220, 331, 411));
+        serialPortSettingsButton = new QPushButton(groupBoxSerial);
+        serialPortSettingsButton->setObjectName(QStringLiteral("serialPortSettingsButton"));
+        serialPortSettingsButton->setGeometry(QRect(10, 50, 149, 27));
+        QSizePolicy sizePolicy3(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(serialPortSettingsButton->sizePolicy().hasHeightForWidth());
+        serialPortSettingsButton->setSizePolicy(sizePolicy3);
+        console = new Console(groupBoxSerial);
+        console->setObjectName(QStringLiteral("console"));
+        console->setGeometry(QRect(0, 100, 321, 331));
+        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(console->sizePolicy().hasHeightForWidth());
+        console->setSizePolicy(sizePolicy4);
+        console->setAcceptRichText(false);
+        showSerialCheckbox = new QCheckBox(groupBoxSerial);
+        showSerialCheckbox->setObjectName(QStringLiteral("showSerialCheckbox"));
+        showSerialCheckbox->setGeometry(QRect(180, 50, 141, 22));
         tabWidget->addTab(tab_3, QString());
-        splitter->addWidget(tabWidget);
 
-        gridLayout_9->addWidget(splitter, 0, 0, 1, 1);
+        verticalLayout_3->addWidget(tabWidget);
 
         qvna->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(qvna);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 340, 21));
+        menuBar->setGeometry(QRect(0, 0, 369, 25));
         menuDatei = new QMenu(menuBar);
         menuDatei->setObjectName(QStringLiteral("menuDatei"));
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName(QStringLiteral("menuHelp"));
+        menuSerial = new QMenu(menuBar);
+        menuSerial->setObjectName(QStringLiteral("menuSerial"));
         qvna->setMenuBar(menuBar);
         statusBar = new QStatusBar(qvna);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         qvna->setStatusBar(statusBar);
 
         menuBar->addAction(menuDatei->menuAction());
+        menuBar->addAction(menuSerial->menuAction());
         menuBar->addAction(menuHelp->menuAction());
         menuDatei->addAction(actionLoad_calibration);
         menuDatei->addSeparator();
         menuDatei->addAction(actionSave);
         menuDatei->addAction(actionSave_calibration);
         menuDatei->addSeparator();
-        menuDatei->addAction(actionExit);
+        menuDatei->addAction(actionQuit);
         menuHelp->addAction(actionAbout);
+        menuHelp->addAction(actionAbout_Qt);
+        menuSerial->addAction(actionConnect);
+        menuSerial->addAction(actionDisconnect);
+        menuSerial->addAction(actionClear);
+        menuSerial->addAction(actionConfigure);
 
         retranslateUi(qvna);
+        QObject::connect(actionConfigure, SIGNAL(triggered()), serialPortSettingsButton, SLOT(click()));
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(qvna);
@@ -442,72 +539,99 @@ public:
 
     void retranslateUi(QMainWindow *qvna)
     {
-        qvna->setWindowTitle(QApplication::translate("qvna", "QVna", 0));
-        actionExit->setText(QApplication::translate("qvna", "Exit", 0));
-        actionScreenshot->setText(QApplication::translate("qvna", "Save screenshot", 0));
-        actionAbout->setText(QApplication::translate("qvna", "About", 0));
-        actionSave_calibration->setText(QApplication::translate("qvna", "Save calibration", 0));
-        actionLoad_calibration->setText(QApplication::translate("qvna", "Load calibration", 0));
-        actionSave->setText(QApplication::translate("qvna", "Save measurement", 0));
-        groupBoxDisplay->setTitle(QApplication::translate("qvna", "Display", 0));
-        label->setText(QApplication::translate("qvna", "Mode", 0));
+        qvna->setWindowTitle(QApplication::translate("qvna", "QVna", Q_NULLPTR));
+        actionQuit->setText(QApplication::translate("qvna", "Quit", Q_NULLPTR));
+        actionScreenshot->setText(QApplication::translate("qvna", "Save screenshot", Q_NULLPTR));
+        actionAbout->setText(QApplication::translate("qvna", "About", Q_NULLPTR));
+        actionSave_calibration->setText(QApplication::translate("qvna", "Save calibration", Q_NULLPTR));
+        actionLoad_calibration->setText(QApplication::translate("qvna", "Load calibration", Q_NULLPTR));
+        actionSave->setText(QApplication::translate("qvna", "Save measurement", Q_NULLPTR));
+        actionConnect->setText(QApplication::translate("qvna", "Connect", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionConnect->setToolTip(QApplication::translate("qvna", " Connect", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        actionDisconnect->setText(QApplication::translate("qvna", "Disconnect", Q_NULLPTR));
+        actionClear->setText(QApplication::translate("qvna", "Clear", Q_NULLPTR));
+        actionConfigure->setText(QApplication::translate("qvna", "Configure", Q_NULLPTR));
+        actionAbout_Qt->setText(QApplication::translate("qvna", "About Qt", Q_NULLPTR));
+        groupBoxDisplay->setTitle(QApplication::translate("qvna", "Display", Q_NULLPTR));
+        label->setText(QApplication::translate("qvna", "Mode", Q_NULLPTR));
         comboBoxMode->clear();
         comboBoxMode->insertItems(0, QStringList()
-         << QApplication::translate("qvna", "Transmission", 0)
-         << QApplication::translate("qvna", "Reflection", 0)
-         << QApplication::translate("qvna", "Calibrate through", 0)
-         << QApplication::translate("qvna", "Calibrate open ", 0)
-         << QApplication::translate("qvna", "Calibrate match", 0)
-         << QApplication::translate("qvna", "Calibrate short", 0)
+         << QApplication::translate("qvna", "Transmission", Q_NULLPTR)
+         << QApplication::translate("qvna", "Reflection", Q_NULLPTR)
+         << QApplication::translate("qvna", "Calibrate through", Q_NULLPTR)
+         << QApplication::translate("qvna", "Calibrate open ", Q_NULLPTR)
+         << QApplication::translate("qvna", "Calibrate match", Q_NULLPTR)
+         << QApplication::translate("qvna", "Calibrate short", Q_NULLPTR)
         );
-        labelPoints->setText(QApplication::translate("qvna", "Points", 0));
+        labelPoints->setText(QApplication::translate("qvna", "Points", Q_NULLPTR));
         comboBoxPoints->clear();
         comboBoxPoints->insertItems(0, QStringList()
-         << QApplication::translate("qvna", "500", 0)
-         << QApplication::translate("qvna", "1000", 0)
-         << QApplication::translate("qvna", "2000", 0)
-         << QApplication::translate("qvna", "5000", 0)
-         << QApplication::translate("qvna", "10000", 0)
-         << QApplication::translate("qvna", "20000", 0)
+         << QApplication::translate("qvna", "500", Q_NULLPTR)
+         << QApplication::translate("qvna", "1000", Q_NULLPTR)
+         << QApplication::translate("qvna", "2000", Q_NULLPTR)
+         << QApplication::translate("qvna", "5000", Q_NULLPTR)
+         << QApplication::translate("qvna", "10000", Q_NULLPTR)
+         << QApplication::translate("qvna", "20000", Q_NULLPTR)
         );
-        pushButtonStart->setText(QApplication::translate("qvna", "Start", 0));
-        label_4->setText(QApplication::translate("qvna", "Average", 0));
-        groupBoxFreq->setTitle(QApplication::translate("qvna", "Range", 0));
-        pushButtonRangeStore->setText(QApplication::translate("qvna", "Store", 0));
-        label1_2->setText(QApplication::translate("qvna", "MHz", 0));
-        label1->setText(QApplication::translate("qvna", "MHz", 0));
-        groupBoxAtt->setTitle(QApplication::translate("qvna", "Att", 0));
-        labelRFAtt->setText(QApplication::translate("qvna", "RF Attentuator (dB)", 0));
+        pushButtonStart->setText(QApplication::translate("qvna", "Start", Q_NULLPTR));
+        label_4->setText(QApplication::translate("qvna", "Average", Q_NULLPTR));
+        groupBoxFreq->setTitle(QApplication::translate("qvna", "Range", Q_NULLPTR));
+        pushButtonRangeStore->setText(QApplication::translate("qvna", "Store", Q_NULLPTR));
+        label1_2->setText(QApplication::translate("qvna", "MHz", Q_NULLPTR));
+        label1->setText(QApplication::translate("qvna", "MHz", Q_NULLPTR));
+        groupBoxAtt->setTitle(QApplication::translate("qvna", "Att", Q_NULLPTR));
+        labelRFAtt->setText(QApplication::translate("qvna", "RF Attentuator (dB)", Q_NULLPTR));
         comboBoxRFAtt->clear();
         comboBoxRFAtt->insertItems(0, QStringList()
-         << QApplication::translate("qvna", "0", 0)
-         << QApplication::translate("qvna", "-10", 0)
-         << QApplication::translate("qvna", "-20", 0)
-         << QApplication::translate("qvna", "-30", 0)
-         << QApplication::translate("qvna", "-40", 0)
+         << QApplication::translate("qvna", "0", Q_NULLPTR)
+         << QApplication::translate("qvna", "-10", Q_NULLPTR)
+         << QApplication::translate("qvna", "-20", Q_NULLPTR)
+         << QApplication::translate("qvna", "-30", Q_NULLPTR)
+         << QApplication::translate("qvna", "-40", Q_NULLPTR)
         );
-        labelTXAtt->setText(QApplication::translate("qvna", "TX Attentuator (dB)", 0));
+        labelTXAtt->setText(QApplication::translate("qvna", "TX Attentuator (dB)", Q_NULLPTR));
         comboBoxTXAtt->clear();
         comboBoxTXAtt->insertItems(0, QStringList()
-         << QApplication::translate("qvna", "0", 0)
-         << QApplication::translate("qvna", "10", 0)
-         << QApplication::translate("qvna", "20", 0)
+         << QApplication::translate("qvna", "0", Q_NULLPTR)
+         << QApplication::translate("qvna", "10", Q_NULLPTR)
+         << QApplication::translate("qvna", "20", Q_NULLPTR)
         );
-        pushButtonNewPlot->setText(QApplication::translate("qvna", "new Plot", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("qvna", "Parameter", 0));
-        groupBoxLCMatch->setTitle(QApplication::translate("qvna", "LC Match", 0));
-        label_5->setText(QApplication::translate("qvna", "RG", 0));
-        label_7->setText(QApplication::translate("qvna", "Ant", 0));
-        label_6->setText(QApplication::translate("qvna", "j", 0));
-        label_10->setText(QApplication::translate("qvna", "Freq", 0));
-        label_11->setText(QApplication::translate("qvna", "MHz", 0));
-        labelLCMatchHP->setText(QApplication::translate("qvna", "HP:", 0));
-        labelLCMatchTP->setText(QApplication::translate("qvna", "TP:", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("qvna", "Calc", 0));
-        groupBox->setTitle(QApplication::translate("qvna", "Device", 0));
-        label_2->setText(QApplication::translate("qvna", "HIQSDR-IP", 0));
+        pushButtonNewPlot->setText(QApplication::translate("qvna", "new Plot", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("qvna", "Parameter", Q_NULLPTR));
+        groupBoxLCMatch->setTitle(QApplication::translate("qvna", "LC Match", Q_NULLPTR));
+        label_5->setText(QApplication::translate("qvna", "RG", Q_NULLPTR));
+        label_7->setText(QApplication::translate("qvna", "Ant", Q_NULLPTR));
+        label_6->setText(QApplication::translate("qvna", "j", Q_NULLPTR));
+        label_10->setText(QApplication::translate("qvna", "Freq", Q_NULLPTR));
+        label_11->setText(QApplication::translate("qvna", "MHz", Q_NULLPTR));
+        labelLCMatchHP->setText(QApplication::translate("qvna", "HP:", Q_NULLPTR));
+        labelLCMatchTP->setText(QApplication::translate("qvna", "TP:", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("qvna", "Calc", Q_NULLPTR));
+        groupBox_3->setTitle(QApplication::translate("qvna", "Colors", Q_NULLPTR));
+        comboBoxColor->clear();
+        comboBoxColor->insertItems(0, QStringList()
+         << QApplication::translate("qvna", "Background", Q_NULLPTR)
+         << QApplication::translate("qvna", "Line real", Q_NULLPTR)
+         << QApplication::translate("qvna", "Line imag", Q_NULLPTR)
+         << QApplication::translate("qvna", "Label real", Q_NULLPTR)
+         << QApplication::translate("qvna", "Label imag", Q_NULLPTR)
+         << QApplication::translate("qvna", "Label freq", Q_NULLPTR)
+         << QApplication::translate("qvna", "Marker", Q_NULLPTR)
+         << QApplication::translate("qvna", "Grid", Q_NULLPTR)
+         << QApplication::translate("qvna", "Smith real", Q_NULLPTR)
+         << QApplication::translate("qvna", "Smith imag", Q_NULLPTR)
+         << QApplication::translate("qvna", "Text", Q_NULLPTR)
+        );
+        pushButtonColor->setText(QApplication::translate("qvna", "Color", Q_NULLPTR));
+        groupBox_4->setTitle(QApplication::translate("qvna", "VNA Type", Q_NULLPTR));
+        hiqsdrRadioButton->setText(QApplication::translate("qvna", "HIQSDR", Q_NULLPTR));
+        serialVNARadioButton->setText(QApplication::translate("qvna", "Serial VNA", Q_NULLPTR));
+        groupBoxHIQSDR->setTitle(QApplication::translate("qvna", "HIQSDR", Q_NULLPTR));
+        label_2->setText(QApplication::translate("qvna", "HIQSDR-IP", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        lineEditIP->setToolTip(QApplication::translate("qvna", "restart to make changes valid", 0));
+        lineEditIP->setToolTip(QApplication::translate("qvna", "restart to make changes valid", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_STATUSTIP
         lineEditIP->setStatusTip(QString());
@@ -515,25 +639,13 @@ public:
 #ifndef QT_NO_WHATSTHIS
         lineEditIP->setWhatsThis(QString());
 #endif // QT_NO_WHATSTHIS
-        groupBox_3->setTitle(QApplication::translate("qvna", "Colors", 0));
-        comboBoxColor->clear();
-        comboBoxColor->insertItems(0, QStringList()
-         << QApplication::translate("qvna", "Background", 0)
-         << QApplication::translate("qvna", "Line real", 0)
-         << QApplication::translate("qvna", "Line imag", 0)
-         << QApplication::translate("qvna", "Label real", 0)
-         << QApplication::translate("qvna", "Label imag", 0)
-         << QApplication::translate("qvna", "Label freq", 0)
-         << QApplication::translate("qvna", "Marker", 0)
-         << QApplication::translate("qvna", "Grid", 0)
-         << QApplication::translate("qvna", "Smith real", 0)
-         << QApplication::translate("qvna", "Smith imag", 0)
-         << QApplication::translate("qvna", "Text", 0)
-        );
-        pushButtonColor->setText(QApplication::translate("qvna", "Color", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("qvna", "Settings", 0));
-        menuDatei->setTitle(QApplication::translate("qvna", "File", 0));
-        menuHelp->setTitle(QApplication::translate("qvna", "Help", 0));
+        groupBoxSerial->setTitle(QApplication::translate("qvna", "Serial Port", Q_NULLPTR));
+        serialPortSettingsButton->setText(QApplication::translate("qvna", "Serial Port Settings", Q_NULLPTR));
+        showSerialCheckbox->setText(QApplication::translate("qvna", "Show Serial Data", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("qvna", "Settings", Q_NULLPTR));
+        menuDatei->setTitle(QApplication::translate("qvna", "File", Q_NULLPTR));
+        menuHelp->setTitle(QApplication::translate("qvna", "Help", Q_NULLPTR));
+        menuSerial->setTitle(QApplication::translate("qvna", "Serial", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -87,7 +87,7 @@ qvna::qvna(QWidget *parent) :
     {
         console->hide();
     }
-    readSettings();
+    //readSettings();  I don't think we need two of these.
     hiqsdr = new HiqsdrCtl( hiqsdrIP);
     for (int i=0;i<MAX_RANGE;i++)
         ui->comboBoxRange->addItem(QString(range[i].name));
@@ -474,8 +474,10 @@ void qvna::readVNA() {
         qDebug() << toDebug(serialDataRead);
        // qDebug("last two points are 0x%x, and 0x%x",dataPtr[2*points],dataPtr[2*points+1]);
         for (int i=0; i < points; i++) {
-            re[i] = (double)(static_cast<quint8>(serialDataRead.at(4*i)))+(double)(256*static_cast<quint8>(serialDataRead.at(4*i+1)));
-            im[i] = (double)(static_cast<quint8>(serialDataRead.at(4*i+2)))+(double)(256*static_cast<quint8>(serialDataRead.at(4*i+3)));
+            re[i] = (double)(static_cast<quint8>(serialDataRead.at(4*i)))
+                    +(double)(256*static_cast<quint8>(serialDataRead.at(4*i+1)))/8192.0;
+            im[i] = (double)(static_cast<quint8>(serialDataRead.at(4*i+2)))
+                    +(double)(256*static_cast<quint8>(serialDataRead.at(4*i+3)))/8182.0;
             //re[i] = (double)dataPtr[2*i];
             //im[i] = (double)dataPtr[2*i+1];
             processData(i);
